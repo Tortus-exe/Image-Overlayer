@@ -63,7 +63,8 @@ outputImage config base (Modified path time isDir) =
         print $ V.length $ imageData base
         -- print $ length $ genMask (newImagePosition config) (0,0) (imageWidth base, imageHeight base)
         let overlaidImage = overlayImage config base overlay
-        writePng (outputImageDirectory config ++ (takeFileName path)) overlaidImage
+        -- writePng (outputImageDirectory config ++ (takeFileName path)) overlaidImage
+        saveJpgImage 8 (outputImageDirectory config ++ (takeFileName path)) (ImageRGB8 overlaidImage)
         print $ V.length $ imageData overlaidImage
     else return ()
 outputImage _ _ _ = return ()
